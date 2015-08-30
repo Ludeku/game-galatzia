@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Main</name>
+    <events>
+        <include>Coffe</include>
+        <include>Player</include>
+        <variable constant="0" name="puntos" sid="6241823370362032" static="0" type="number">0</variable>
+        <variable constant="0" name="gameover" sid="7526187347451527" static="0" type="number">0</variable>
+        <variable constant="0" name="maxpuntos" sid="3611648481409942" static="0" type="number">0</variable>
+        <variable constant="0" name="enemys_counter" sid="8776949849503417" static="0" type="number">0</variable>
+        <event-block sid="7189646912281833">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="5902436473634203" type="System" />
+            </conditions>
+            <actions>
+                <action id="-7" name="Scroll to position" sid="7946056328888636" type="System">
+                    <param id="0" name="X">240</param>
+                    <param id="1" name="Y">320</param>
+                </action>
+                <action id="5" name="Check item exists" sid="7131880624258761" type="LocalStorage">
+                    <param id="0" name="Key">&quot;maxpuntos_key&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7390571671247189">
+            <conditions />
+            <actions>
+                <action id="0" name="Set text" sid="1461317966751448" type="Text">
+                    <param id="0" name="Text">&quot;Objetos en pantalla: &quot;&amp;objectcount&amp;newline&amp;&#x0D;&#x0A;&quot;FPS: &quot;&amp;fps&amp;newline&amp;&#x0D;&#x0A;&quot;CPU: &quot;&amp;(cpuutilisation*100)&amp;&quot;%&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1552771215878747">
+            <conditions>
+                <condition id="9" name="On item exists" sid="9072149267998257" type="LocalStorage">
+                    <param id="0" name="Key">&quot;maxpuntos_key&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="5722628810949751" type="LocalStorage">
+                    <param id="0" name="Key">&quot;maxpuntos_key&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5087501811068267">
+            <conditions>
+                <condition id="1" name="On item get" sid="6337273171781622" type="LocalStorage">
+                    <param id="0" name="Key">&quot;maxpuntos_key&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1302917252936248" type="System">
+                    <param id="0" name="Variable">maxpuntos</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+                <action id="0" name="Set text" sid="6948067921141323" type="Text2">
+                    <param id="0" name="Text">maxpuntos</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4365572779351033">
+            <conditions>
+                <condition id="10" name="On item missing" sid="773776055723996" type="LocalStorage">
+                    <param id="0" name="Key">&quot;maxpuntos_key&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set item" sid="6316975725334188" type="LocalStorage">
+                    <param id="0" name="Key">&quot;maxpuntos_key&quot;</param>
+                    <param id="1" name="Value">puntos</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4964010353748439">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="1891715421174054" type="System">
+                    <param id="0" name="Variable">enemys_counter</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">5</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="5011652769491165">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="3855138870762029" type="System">
+                            <param id="0" name="Interval (seconds)">0.5</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="6076469750561723" type="System">
+                            <param id="0" name="Object to create">Starbuck</param>
+                            <param id="1" name="Layer">&quot;main&quot;</param>
+                            <param id="2" name="X">random(ViewportLeft(&quot;main&quot;)+32, ViewportRight(&quot;main&quot;)-32)</param>
+                            <param id="3" name="Y">-32</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="7668666618177898" type="System">
+                            <param id="0" name="Variable">enemys_counter</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="936204890805584">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3797052344666528" type="Bullet">
+                    <param id="0" name="Object">Ground</param>
+                </condition>
+                <condition id="-11" name="For Each" sid="4308718726976142" type="System">
+                    <param id="0" name="Object">Bullet</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="4310947814467125" type="Bullet">
+                    <param id="0" name="X">random(ViewportLeft(&quot;main&quot;)+32, ViewportRight(&quot;main&quot;)-32)</param>
+                    <param id="1" name="Y">-32</param>
+                </action>
+                <action id="-10" name="Add to" sid="153290519749489" type="System">
+                    <param id="0" name="Variable">puntos</param>
+                    <param id="1" name="Value">100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="5548120537251588">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2494727063597495" type="Player">
+                    <param id="0" name="Object">Spikes</param>
+                </condition>
+                <condition id="0" name="On collision with another object" sid="4126569810107198" type="Player">
+                    <param id="0" name="Object">Bullet</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="5258290428164581" type="Player" />
+            </actions>
+        </event-block>
+        <event-block sid="4851819763335758">
+            <conditions>
+                <condition id="-19" name="On destroyed" sid="8217200084476768" type="Player" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8096482097815478" type="System">
+                    <param id="0" name="Variable">gameover</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="833483472496143">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="4890939700739444" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="5657541315971721" type="puntos">
+                    <param id="0" name="Text">puntos</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9113756535145239">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="2395219644986186" type="System">
+                    <param id="0" name="Variable">gameover</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="6043686127179776" type="System">
+                    <param id="0" name="Variable">puntos</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">maxpuntos</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set item" sid="9286408477321269" type="LocalStorage">
+                    <param id="0" name="Key">&quot;maxpuntos_key&quot;</param>
+                    <param id="1" name="Value">puntos</param>
+                </action>
+                <action id="-21" name="Reset global variables" sid="6872443044261198" type="System" />
+                <action id="-45" name="Reset persisted objects" sid="6737457886725833" type="System" />
+                <action id="-26" name="Restart layout" sid="837794994420835" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="3305304686065286">
+            <conditions>
+                <condition id="-22" name="Else" sid="3238569378571933" type="System" />
+                <condition id="-14" name="Compare variable" sid="5799059490565114" type="System">
+                    <param id="0" name="Variable">gameover</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-21" name="Reset global variables" sid="9279922814178814" type="System" />
+                <action id="-45" name="Reset persisted objects" sid="182052745204578" type="System" />
+                <action id="-26" name="Restart layout" sid="4318603850242366" type="System" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

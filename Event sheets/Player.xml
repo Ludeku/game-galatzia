@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Player</name>
+    <events>
+        <comment>Player</comment>
+        <event-block sid="4913931059778697">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="3094308676876856" type="Player">
+                    <param id="0" name="Instance variable">active</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="5521000252112344">
+                    <conditions>
+                        <condition id="2" name="Is in touch" sid="3358114665658322" type="Touch" />
+                        <condition id="-4" name="Trigger once while true" sid="3199828055703273" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1449956701872085" type="Player">
+                            <param id="0" name="Instance variable">facing</param>
+                            <param id="1" name="Value">Self.facing=1?0:1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8325496491989059">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="7252744363035989" type="Player">
+                            <param id="0" name="Instance variable">facing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="7" name="Simulate control" sid="7674785978716912" type="Player">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="3720627066896578" type="Player">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6297611502562954">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="9176727352288676" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="7" name="Simulate control" sid="4047558188646901" type="Player">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="1182246541632255" type="Player">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="8881080587593733">
+            <conditions>
+                <condition behavior="Platform" id="0" name="Is moving" sid="7013237220968665" type="Player" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="9793127970807082" type="Player">
+                    <param id="0" name="Animation">&quot;Run&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8345857812784935">
+            <conditions>
+                <condition id="-22" name="Else" sid="4202907155628229" type="System" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="6650427114252481" type="Player">
+                    <param id="0" name="Animation">&quot;Iddle&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Coffe</name>
+    <events>
+        <event-block any="1" sid="6254791933193055">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="5438572797866247" type="System" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Set Y" sid="5587842477711089" type="Bullet">
+                    <param id="0" name="Y">Self.Y+(Self.gravity *60*dt)</param>
+                </action>
+                <action id="-10" name="Set value" sid="8991316696087282" type="Bullet">
+                    <param id="0" name="Instance variable">gravity</param>
+                    <param id="1" name="Value">5</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
